@@ -1,0 +1,76 @@
+<view class="page-bg">
+  <view class="nav-bar" style="padding-top:{{statusBarHeight}}px;">
+    <view class="nav-inner">
+      <view class="nav-back" bindtap="onBack"><text class="nav-back-arrow">←</text></view>
+      <text class="nav-title">{{mode==='preview'?'识别结果':'食物详情'}}</text>
+      <view class="nav-placeholder"></view>
+    </view>
+  </view>
+  <view style="height:{{navHeight}}px;"></view>
+
+  <view class="content-area" wx:if="{{food}}">
+    <!-- 左右切换箭头 -->
+    <view wx:if="{{foods.length>1}}" class="nav-arrow nav-arrow-left {{currentIndex<=0?'arrow-dis':''}}" bindtap="onPrevFood">
+      <text class="arrow-icon">‹</text>
+    </view>
+    <view wx:if="{{foods.length>1}}" class="nav-arrow nav-arrow-right {{currentIndex>=foods.length-1?'arrow-dis':''}}" bindtap="onNextFood">
+      <text class="arrow-icon">›</text>
+    </view>
+
+    <!-- 页码指示器 -->
+    <view wx:if="{{foods.length>1}}" class="food-indicator">
+      <view wx:for="{{foods}}" wx:key="id" class="indicator-dot {{index===currentIndex?'dot-active':''}}"></view>
+    </view>
+
+    <!-- 食物图标/图片 -->
+    <view class="food-icon-big">
+      <image wx:if="{{food.imageUrl||food.tempImagePath}}" class="food-img-big" src="{{food.imageUrl||food.tempImagePath}}" mode="aspectFill"/>
+      <text wx:else class="icon-emoji">{{food.icon}}</text>
+    </view>
+    <text class="food-name-big">{{food.name}}</text>
+    <view wx:if="{{foods.length>1}}" class="food-counter">
+      <text class="counter-text">{{currentIndex+1}} / {{foods.length}}</text>
+    </view>
+    <view class="food-meta">
+      <text wx:if="{{food.type}}" class="food-type-badge">{{food.type}}</text>
+      <text wx:if="{{food.portion}}" class="food-portion">{{food.portion}}</text>
+      <text wx:if="{{mode==='view'}}" class="food-time-badge">{{timeStr}}</text>
+    </view>
+
+    <!-- 核心营养 -->
+    <view class="section-label">📊 营养成分</view>
+    <view class="nutri-grid">
+      <view class="nutri-item cal-bg"><text class="nutri-val">{{food.cal}}</text><text class="nutri-unit">kcal</text><text class="nutri-label">热量</text></view>
+      <view class="nutri-item pro-bg"><text class="nutri-val">{{food.protein}}</text><text class="nutri-unit">g</text><text class="nutri-label">蛋白质</text></view>
+      <view class="nutri-item fat-bg"><text class="nutri-val">{{food.fat}}</text><text class="nutri-unit">g</text><text class="nutri-label">脂肪</text></view>
+      <view class="nutri-item carb-bg"><text class="nutri-val">{{food.carbs}}</text><text class="nutri-unit">g</text><text class="nutri-label">碳水</text></view>
+    </view>
+    <view class="nutri-row-extra">
+      <view class="nutri-mini fiber-bg"><text class="nm-icon">🌿</text><text class="nm-label">膳食纤维</text><text class="nm-val">{{food.fiber||0}}g</text></view>
+      <view class="nutri-mini sodium-bg"><text class="nm-icon">🧂</text><text class="nm-label">钠</text><text class="nm-val">{{food.sodium||0}}mg</text></view>
+    </view>
+
+    <!-- AI点评 -->
+    <view wx:if="{{food.summary||analysis}}" class="section-label">💬 AI 点评</view>
+    <view wx:if="{{food.summary}}" class="summary-tag">{{food.summary}}</view>
+    <view wx:if="{{analysis}}" class="analysis-card">
+      <text class="analysis-text">{{analysis}}</text>
+    </view>
+
+    <!-- 热量比喻 -->
+    <view class="section-label">⚡ 这些热量意味着</view>
+    <view class="compare-list">
+      <view wx:for="{{comparisons}}" wx:key="text" class="compare-item">
+        <text class="comp-icon">{{item.icon}}</text>
+        <text class="comp-text">{{item.text}}</text>
+      </view>
+    </view>
+
+    <!-- 添加按钮（预览模式，每个食物单独添加） -->
+    <view wx:if="{{mode==='preview'}}" class="add-btn-wrap">
+      <view class="add-btn {{currentAdded?'add-btn-done':''}}" bindtap="onAddCurrent">
+        <text class="add-btn-text">{{currentAdded?'已添加':'添加到今日饮食'}}</text>
+      </view>
+    </view>
+  </view>
+</view>

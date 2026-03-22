@@ -1,0 +1,65 @@
+.energy-card{padding:36rpx 20rpx;}
+.energy-row{display:flex;align-items:center;justify-content:center;gap:12rpx;}
+.energy-item{text-align:center;flex:1;} .energy-item.result .ev{color:#FF8A00;}
+.ee{font-size:48rpx;display:block;margin-bottom:6rpx;} .el{font-size:22rpx;color:#8E8E93;display:block;margin-bottom:6rpx;}
+.ev{font-size:44rpx;font-weight:700;display:block;} .eu{font-size:20rpx;color:#8E8E93;display:block;}
+.energy-op{font-size:36rpx;font-weight:700;color:#8E8E93;padding-top:40rpx;}
+.bar-card{padding:28rpx;} .bar-row{display:flex;align-items:center;gap:16rpx;margin-bottom:16rpx;}
+.bar-row:last-child{margin-bottom:0;} .bar-label{font-size:24rpx;color:#8E8E93;width:60rpx;}
+.bar-track{flex:1;height:20rpx;background:#F5F0EA;border-radius:10rpx;overflow:hidden;}
+.bar-fill{height:100%;border-radius:10rpx;transition:width 0.3s;}
+.bar-fill.intake{background:linear-gradient(90deg,#FFD4A8,#FF8A00);}
+.bar-fill.burn{background:linear-gradient(90deg,#FFB088,#FF6B35);}
+
+.section-title{font-size:32rpx;font-weight:700;margin:28rpx 0 16rpx;padding:0 8rpx;}
+
+/* 营养分布图表 */
+.chart-card{padding:28rpx;}
+.chart-row{display:flex;align-items:center;gap:28rpx;margin-bottom:24rpx;}
+.nutri-pie-canvas{width:150rpx;height:150rpx;flex-shrink:0;}
+.chart-legend{flex:1;}
+.legend-item{display:flex;align-items:center;gap:12rpx;margin-bottom:14rpx;}
+.legend-item:last-child{margin-bottom:0;}
+.legend-dot{width:20rpx;height:20rpx;border-radius:6rpx;flex-shrink:0;}
+.legend-label{font-size:24rpx;color:#5C4813;flex:1;}
+.legend-val{font-size:28rpx;font-weight:700;color:#333;}
+
+.chart-bar-section{border-top:2rpx solid #F5F0EA;padding-top:20rpx;}
+.chart-bar-row{display:flex;align-items:center;gap:12rpx;margin-bottom:14rpx;}
+.chart-bar-row:last-child{margin-bottom:0;}
+.cb-label{font-size:22rpx;color:#8E8E93;width:80rpx;}
+.cb-track{flex:1;height:16rpx;background:#F5F0EA;border-radius:8rpx;overflow:hidden;}
+.cb-fill{height:100%;border-radius:8rpx;transition:width 0.5s;}
+.cb-val{font-size:22rpx;font-weight:600;color:#333;width:60rpx;text-align:right;}
+
+.empty-chart{padding:40rpx;text-align:center;}
+.empty-chart-text{font-size:26rpx;color:#C7C7CC;}
+
+/* 今日饮食总结 */
+.summary-card-ai{padding:28rpx;}
+
+.summary-stats{display:flex;gap:12rpx;margin-bottom:20rpx;}
+.stat-chip{flex:1;display:flex;flex-direction:column;align-items:center;background:#FFF7ED;border-radius:16rpx;padding:16rpx 8rpx;gap:4rpx;}
+.sc-icon{font-size:28rpx;}
+.sc-val{font-size:32rpx;font-weight:700;color:#FF8A00;}
+.sc-label{font-size:20rpx;color:#8E8E93;}
+
+.summary-body{font-size:26rpx;line-height:1.8;color:#5C4813;display:block;white-space:pre-wrap;}
+
+/* 明日饮食推荐 */
+.recommend-card{padding:28rpx;}
+.rec-meal-section{margin-bottom:24rpx;}
+.rec-meal-section:last-of-type{margin-bottom:16rpx;}
+.rec-meal-header{display:flex;align-items:center;gap:10rpx;margin-bottom:12rpx;}
+.rec-meal-icon{font-size:32rpx;}
+.rec-meal-title{font-size:28rpx;font-weight:700;color:#333;}
+
+.rec-food-item{display:flex;align-items:center;justify-content:space-between;padding:14rpx 20rpx;background:#FFF7ED;border-radius:16rpx;margin-bottom:10rpx;}
+.rec-food-left{flex:1;min-width:0;}
+.rec-food-name{font-size:26rpx;font-weight:600;color:#333;display:block;}
+.rec-food-reason{font-size:22rpx;color:#8E8E93;display:block;margin-top:4rpx;}
+.rec-food-cal{font-size:24rpx;font-weight:600;color:#FF8A00;flex-shrink:0;margin-left:16rpx;}
+
+.rec-total{border-top:2rpx solid #F5F0EA;padding-top:16rpx;display:flex;align-items:center;justify-content:space-between;}
+.rec-total-label{font-size:26rpx;color:#8E8E93;}
+.rec-total-val{font-size:30rpx;font-weight:700;color:#FF8A00;}

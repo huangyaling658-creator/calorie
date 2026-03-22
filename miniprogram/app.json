@@ -1,0 +1,35 @@
+{
+  "pages": [
+    "pages/eat/eat",
+    "pages/exercise/exercise",
+    "pages/energy/energy",
+    "pages/profile/profile",
+    "pages/food-detail/food-detail"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#FFFBF5",
+    "navigationBarTitleText": "轻卡路里",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#FFFBF5"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#8E8E93",
+    "selectedColor": "#FF8A00",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      { "pagePath": "pages/eat/eat", "text": "吃了啥" },
+      { "pagePath": "pages/exercise/exercise", "text": "动了么" },
+      { "pagePath": "pages/energy/energy", "text": "今日能量" },
+      { "pagePath": "pages/profile/profile", "text": "能量日历" }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "requiredPrivateInfos": [],
+  "permission": {
+    "scope.record": {
+      "desc": "用于语音输入识别食物和运动"
+    }
+  }
+}

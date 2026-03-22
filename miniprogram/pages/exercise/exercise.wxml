@@ -1,0 +1,67 @@
+<view class="page-container">
+  <scroll-view class="calendar-bar" scroll-x="true" scroll-into-view="{{scrollToDay}}" enhanced show-scrollbar="{{false}}">
+    <view class="calendar-scroll">
+      <view wx:for="{{calendarDays}}" wx:key="date" id="day-{{item.date}}"
+        class="cal-day {{item.isToday?'today':''}} {{item.isSelected?'selected':''}} {{item.hasData?'has-data':''}}"
+        bindtap="onSelectDay" data-date="{{item.date}}">
+        <text class="cal-day-name">周{{item.dayName}}</text>
+        <text class="cal-day-num">{{item.dayNum}}</text>
+        <view class="cal-day-dot"></view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="tip-card">
+    <text class="tip-badge">💡 减肥妙招</text>
+    <text class="tip-text">{{dailyTip}}</text>
+  </view>
+  <view class="input-card">
+    <text class="card-title">AI识别运动</text>
+    <view class="textarea-wrap-ex">
+      <textarea class="ex-textarea" placeholder="例如：跑步30分钟，举重20分钟" value="{{exInput}}" bindinput="onExInput" maxlength="500" adjust-position="{{true}}"/>
+      <view wx:if="{{exInput.length}}" class="clear-btn-ex" catchtap="onClearInput">×</view>
+      <view class="mic-in-box {{recording?'mic-in-recording':''}}" catchtap="onVoiceInput">
+        <view wx:if="{{recording}}" class="mic-wave">
+          <view class="mw-bar"></view><view class="mw-bar"></view><view class="mw-bar"></view>
+          <view class="mw-bar"></view><view class="mw-bar"></view>
+        </view>
+        <view wx:else class="i-mic"><view class="i-mic-head"></view><view class="i-mic-body"></view><view class="i-mic-base"></view></view>
+      </view>
+      <text wx:if="{{recording}}" class="rec-hint-ex">{{voiceText}}</text>
+    </view>
+    <view wx:if="{{aiLoading}}" class="ai-loading-bar"><view class="ai-spin"></view><text class="ai-lt">AI 分析中...</text></view>
+    <view class="ai-btn" bindtap="onAIRecognize"><text class="ai-btn-text">✨ AI 智能分析</text></view>
+  </view>
+  <view class="section-header">
+    <text class="sh-title">今日消耗</text>
+  </view>
+  <view class="card summary-card">
+    <view class="summary-left">
+      <view class="summary-number"><text class="summary-value">{{totalBurned}}</text><text class="summary-unit"> kcal</text></view>
+    </view>
+    <view class="ring-container">
+      <canvas canvas-id="exRing" class="ring-canvas"></canvas>
+      <view class="ring-icon-wrap"><text class="ring-icon-text">💪</text></view>
+    </view>
+  </view>
+  <view class="section-header">
+    <text class="sh-title">运动记录</text>
+  </view>
+  <view class="card food-list-card" wx:if="{{exercises.length}}">
+    <view wx:for="{{exercises}}" wx:key="id" class="food-entry" bindtap="onExDetail" data-index="{{index}}">
+      <view class="food-entry-row">
+        <view class="food-icon-wrap"><text class="food-item-icon">{{item.icon}}</text></view>
+        <view class="food-item-info">
+          <text class="food-item-name">{{item.name}}</text>
+          <text class="food-item-time">{{item.duration}} 分钟</text>
+        </view>
+        <text class="food-item-cal">-{{item.cal}} kcal</text>
+        <view class="food-item-del" catchtap="onDeleteExercise" data-index="{{index}}">×</view>
+      </view>
+    </view>
+  </view>
+  <view class="section-title">快速添加</view>
+  <view class="quick-tags">
+    <view wx:for="{{quickExercises}}" wx:key="name" class="quick-tag" bindtap="onQuickExercise" data-index="{{index}}">{{item.icon}} {{item.name}}</view>
+  </view>
+  <view style="height:180rpx;"></view>
+</view>

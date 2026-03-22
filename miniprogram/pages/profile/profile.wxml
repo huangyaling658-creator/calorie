@@ -1,0 +1,64 @@
+<view class="page-container">
+  <view class="streak-card"><text class="streak-fire">🔥</text><view class="streak-info"><text class="streak-num">{{streak}}</text><text class="streak-label">天连续记录</text></view></view>
+  <view class="report-section">
+    <view class="report-tabs">
+      <view class="report-tab {{reportTab==='week'?'active':''}}" bindtap="onSwitchReport" data-tab="week">周日历</view>
+      <view class="report-tab {{reportTab==='month'?'active':''}}" bindtap="onSwitchReport" data-tab="month">月日历</view>
+    </view>
+
+    <!-- 周视图 -->
+    <view wx:if="{{reportTab==='week'}}" class="week-report">
+      <view wx:for="{{weekDays}}" wx:key="date" class="week-card">
+        <view class="wc-header">
+          <view class="wc-date">
+            <text class="wc-weekday">周{{item.dayName}}</text>
+            <text class="wc-daynum">{{item.dayNum}}日</text>
+          </view>
+          <text wx:if="{{item.cal}}" class="wc-cal">{{item.cal}} kcal</text>
+        </view>
+        <!-- 图片九宫格 -->
+        <view wx:if="{{item.displayImages.length}}" class="wc-photo-grid wc-grid-{{item.displayImages.length>3?'multi':item.displayImages.length}}">
+          <image wx:for="{{item.displayImages}}" wx:for-item="img" wx:key="id" class="wc-photo" src="{{img.url}}" mode="aspectFill" bindtap="onFoodDetail" data-id="{{img.id}}" data-date="{{item.date}}"/>
+        </view>
+        <!-- 食物标签 -->
+        <view wx:if="{{item.displayChips.length}}" class="wc-chips">
+          <view wx:for="{{item.displayChips}}" wx:for-item="chip" wx:key="id" class="wc-chip" bindtap="onFoodDetail" data-id="{{chip.id}}" data-date="{{item.date}}">
+            <image wx:if="{{chip.imageUrl}}" class="wc-chip-img" src="{{chip.imageUrl}}" mode="aspectFill"/>
+            <text wx:else class="wc-chip-icon">{{chip.icon}}</text>
+            <text class="wc-chip-name">{{chip.name}}</text>
+          </view>
+        </view>
+        <!-- 展开/收起 -->
+        <view wx:if="{{item.collapsed}}" class="wc-expand" bindtap="onToggleExpand" data-idx="{{index}}">
+          <text class="wc-expand-text">{{item.expanded?'收起':'展开全部 '+item.total+' 项 ▸'}}</text>
+        </view>
+        <!-- 空状态 -->
+        <view wx:if="{{!item.chips.length}}" class="wc-empty"><text class="wc-empty-text">暂无饮食记录</text></view>
+      </view>
+    </view>
+
+    <!-- 月视图 -->
+    <view wx:if="{{reportTab==='month'}}" class="month-report">
+      <view class="month-nav">
+        <view class="month-arrow" bindtap="onPrevMonth">‹</view>
+        <text class="month-title">{{monthTitle}}</text>
+        <view class="month-arrow" bindtap="onNextMonth">›</view>
+      </view>
+      <view class="month-header">
+        <text class="mh-cell">日</text><text class="mh-cell">一</text><text class="mh-cell">二</text>
+        <text class="mh-cell">三</text><text class="mh-cell">四</text><text class="mh-cell">五</text><text class="mh-cell">六</text>
+      </view>
+      <view class="month-grid">
+        <view wx:for="{{monthCells}}" wx:key="idx" class="month-cell {{item.isToday?'today':''}} {{item.empty?'empty':''}}">
+          <text class="mc-num" wx:if="{{!item.empty}}">{{item.day}}</text>
+          <image wx:if="{{item.images.length}}" class="mc-thumb" src="{{item.images[0]}}" mode="aspectFill"/>
+          <view wx:elif="{{item.icons.length}}" class="mc-icons">
+            <text wx:for="{{item.icons}}" wx:for-item="ic" wx:key="*this" class="mc-icon">{{ic}}</text>
+          </view>
+          <view class="mc-dot" wx:if="{{item.hasMeal && !item.icons.length && !item.images.length}}"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style="height:200rpx;"></view>
+</view>

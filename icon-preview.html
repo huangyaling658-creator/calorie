@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>卡路里滚 图标</title>
+<style>
+body{display:flex;align-items:center;justify-content:center;min-height:100vh;background:#f5f5f5;margin:0;flex-direction:column;gap:20px}
+.icon{width:240px;height:240px;border-radius:48px;background:linear-gradient(135deg,#FFB366,#FF8A00);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(255,138,0,0.4);position:relative;overflow:hidden}
+.icon::before{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:rgba(255,255,255,0.12);border-radius:50%}
+.icon::after{content:'';position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(255,255,255,0.08);border-radius:50%}
+.letter{font-size:140px;font-weight:800;color:#FFF;font-family:'Helvetica Neue',Arial,sans-serif;letter-spacing:-4px;text-shadow:0 4px 12px rgba(0,0,0,0.15);z-index:1}
+.hint{font-size:14px;color:#999;text-align:center;max-width:300px;line-height:1.6}
+.sizes{display:flex;gap:20px;align-items:end}
+.s1{width:120px;height:120px;border-radius:24px;font-size:70px}
+.s2{width:60px;height:60px;border-radius:12px;font-size:34px}
+</style>
+</head>
+<body>
+<div class="icon"><span class="letter">K</span></div>
+<div class="sizes">
+  <div class="icon s1"><span class="letter" style="font-size:70px">K</span></div>
+  <div class="icon s2"><span class="letter" style="font-size:34px">K</span></div>
+</div>
+<p class="hint">在浏览器中打开此文件，截图后上传至微信公众平台作为小程序图标。<br>建议尺寸：144×144px</p>
+</body>
+</html>

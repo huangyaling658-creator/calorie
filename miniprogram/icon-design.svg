@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFB366"/>
+      <stop offset="100%" style="stop-color:#FF6B35"/>
+    </linearGradient>
+    <linearGradient id="flame" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFF3E0"/>
+      <stop offset="50%" style="stop-color:#FFFFFF"/>
+      <stop offset="100%" style="stop-color:#FFFDE7"/>
+    </linearGradient>
+    <linearGradient id="inner" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" style="stop-color:#FF8A00"/>
+      <stop offset="100%" style="stop-color:#FFB366"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ÒÌo -->
+  <rect width="1024" height="1024" rx="220" ry="220" fill="url(#bg)"/>
+
+  <!-- ¯ -->
+  <circle cx="512" cy="520" r="300" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="36"/>
+  <!-- Û¦'Åp¦75%	 -->
+  <circle cx="512" cy="520" r="300" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="36"
+    stroke-linecap="round"
+    stroke-dasharray="1414 1885"
+    stroke-dashoffset="471"
+    transform="rotate(-90 512 520)"/>
+
+  <!-- k0;S -->
+  <path d="M512 280
+    C512 280, 420 380, 420 460
+    C420 510, 440 560, 470 590
+    C450 550, 480 530, 500 540
+    C480 580, 460 620, 460 660
+    C460 720, 490 760, 512 770
+    C534 760, 564 720, 564 660
+    C564 620, 544 580, 524 540
+    C544 530, 574 550, 554 590
+    C584 560, 604 510, 604 460
+    C604 380, 512 280, 512 280Z"
+    fill="url(#flame)" opacity="0.95"/>
+
+  <!-- k0…¯ -->
+  <path d="M512 440
+    C512 440, 475 490, 475 530
+    C475 570, 490 600, 512 610
+    C534 600, 549 570, 549 530
+    C549 490, 512 440, 512 440Z"
+    fill="url(#inner)" opacity="0.8"/>
+
+  <!-- •è‡WÅp' -->
+  <text x="512" y="880" text-anchor="middle" font-family="PingFang SC, Helvetica Neue, Arial" font-size="96" font-weight="700" fill="rgba(255,255,255,0.95)" letter-spacing="12">
+    kcal
+  </text>
+</svg>

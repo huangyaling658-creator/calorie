@@ -1,0 +1,84 @@
+<view class="page-container">
+  <view class="card energy-card">
+    <view class="energy-row">
+      <view class="energy-item"><text class="ee">🍽️</text><text class="el">摄入</text><text class="ev">{{intake}}</text><text class="eu">kcal</text></view>
+      <text class="energy-op">−</text>
+      <view class="energy-item"><text class="ee">🔥</text><text class="el">消耗</text><text class="ev">{{burn}}</text><text class="eu">kcal</text></view>
+      <text class="energy-op">=</text>
+      <view class="energy-item result"><text class="ee">⚡</text><text class="el">净摄入</text><text class="ev">{{net}}</text><text class="eu">kcal</text></view>
+    </view>
+  </view>
+
+  <view class="card bar-card">
+    <view class="bar-row"><text class="bar-label">摄入</text><view class="bar-track"><view class="bar-fill intake" style="width:{{intakeP}}%"></view></view></view>
+    <view class="bar-row"><text class="bar-label">消耗</text><view class="bar-track"><view class="bar-fill burn" style="width:{{burnP}}%"></view></view></view>
+  </view>
+
+  <!-- 营养分布图表 -->
+  <view class="section-title">📊 营养分布</view>
+  <view class="card chart-card" wx:if="{{nutriPct.p||nutriPct.c||nutriPct.f}}">
+    <view class="chart-row">
+      <canvas canvas-id="nutriPie" class="nutri-pie-canvas"></canvas>
+      <view class="chart-legend">
+        <view class="legend-item"><view class="legend-dot" style="background:#FF5252"></view><text class="legend-label">蛋白质</text><text class="legend-val">{{nutriPct.p}}%</text></view>
+        <view class="legend-item"><view class="legend-dot" style="background:#2196F3"></view><text class="legend-label">碳水</text><text class="legend-val">{{nutriPct.c}}%</text></view>
+        <view class="legend-item"><view class="legend-dot" style="background:#4CAF50"></view><text class="legend-label">脂肪</text><text class="legend-val">{{nutriPct.f}}%</text></view>
+      </view>
+    </view>
+    <view class="chart-bar-section">
+      <view class="chart-bar-row">
+        <text class="cb-label">蛋白质</text>
+        <view class="cb-track"><view class="cb-fill" style="width:{{nutriPct.p}}%;background:#FF5252"></view></view>
+        <text class="cb-val">{{nutriPct.p}}%</text>
+      </view>
+      <view class="chart-bar-row">
+        <text class="cb-label">碳水</text>
+        <view class="cb-track"><view class="cb-fill" style="width:{{nutriPct.c}}%;background:#2196F3"></view></view>
+        <text class="cb-val">{{nutriPct.c}}%</text>
+      </view>
+      <view class="chart-bar-row">
+        <text class="cb-label">脂肪</text>
+        <view class="cb-track"><view class="cb-fill" style="width:{{nutriPct.f}}%;background:#4CAF50"></view></view>
+        <text class="cb-val">{{nutriPct.f}}%</text>
+      </view>
+    </view>
+  </view>
+  <view class="card empty-chart" wx:else>
+    <text class="empty-chart-text">暂无营养数据，去记录饮食后查看</text>
+  </view>
+
+  <!-- 今日饮食总结 -->
+  <view class="section-title">📝 今日饮食总结</view>
+  <view class="card summary-card-ai">
+    <view class="summary-stats">
+      <view class="stat-chip"><text class="sc-icon">🍽️</text><text class="sc-val">{{foodCount}}</text><text class="sc-label">种食物</text></view>
+      <view class="stat-chip"><text class="sc-icon">🔥</text><text class="sc-val">{{intake}}</text><text class="sc-label">kcal摄入</text></view>
+      <view class="stat-chip"><text class="sc-icon">🏃</text><text class="sc-val">{{exCount}}</text><text class="sc-label">次运动</text></view>
+    </view>
+    <text class="summary-body">{{summaryText}}</text>
+  </view>
+
+  <!-- 明日饮食推荐 -->
+  <view class="section-title">🍴 明日饮食推荐</view>
+  <view class="card recommend-card" wx:if="{{recommend.length}}">
+    <view wx:for="{{recommend}}" wx:key="meal" class="rec-meal-section">
+      <view class="rec-meal-header">
+        <text class="rec-meal-icon">{{item.meal==='早餐'?'🌅':(item.meal==='午餐'?'☀️':'🌙')}}</text>
+        <text class="rec-meal-title">{{item.meal}}</text>
+      </view>
+      <view wx:for="{{item.items}}" wx:for-item="food" wx:key="name" class="rec-food-item">
+        <view class="rec-food-left">
+          <text class="rec-food-name">{{food.name}}</text>
+          <text class="rec-food-reason">{{food.reason}}</text>
+        </view>
+        <text class="rec-food-cal">~{{food.cal}} kcal</text>
+      </view>
+    </view>
+    <view class="rec-total">
+      <text class="rec-total-label">推荐总热量</text>
+      <text class="rec-total-val">~{{recommendTotal}} kcal</text>
+    </view>
+  </view>
+
+  <view style="height:200rpx;"></view>
+</view>
